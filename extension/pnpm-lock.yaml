@@ -7,10 +7,20 @@ settings:
 importers:
 
   .:
+    dependencies:
+      gmail-js:
+        specifier: ^1.1.16
+        version: 1.1.16
+      jquery:
+        specifier: ^4.0.0
+        version: 4.0.0
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.8
         version: 5.0.9
+      '@types/jquery':
+        specifier: ^4.0.1
+        version: 4.0.1
       '@wxt-dev/module-svelte':
         specifier: ^2.0.4
         version: 2.0.5(svelte@5.57.3)(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0))(wxt@0.21.5(eslint@9.39.4(jiti@2.7.0)(supports-color@7.2.0))(rolldown@1.2.19)(typescript@5.9.3)(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0))(web-ext@10.8.0(jiti@2.7.0)(supports-color@7.2.0)))
@@ -345,6 +355,9 @@ packages:
 
   '@types/har-format@1.2.16':
     resolution: {integrity: sha512-fluxdy7ryD3MV6h8pTfTYpy/xQzCFC7m89nOH9y94cNqJ1mDIDPut7MnRHI3F6qRmh/cT2fUjG1MLdCNb4hE9A==}
+
+  '@types/jquery@4.0.1':
+    resolution: {integrity: sha512-9a59A/tycXgYuPABcp6/3spSShn0NT2UOM4EfHvMumjYi4lJWTsK5SZWjhx3yRm9IHGCeWXdV2YfNsrWrft/CA==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -958,6 +971,9 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
+  gmail-js@1.1.16:
+    resolution: {integrity: sha512-lSp3PA08sYlhcWkTXok2UyPLUXpNAXntqNSaDVmOA+aLRvDSy/CP4ZpAyX2vLVS2vVItvOadnuusImAjgRbHRA==}
+
   graceful-fs@4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
 
@@ -1104,6 +1120,9 @@ packages:
 
   jose@5.9.6:
     resolution: {integrity: sha512-AMlnetc9+CV9asI19zHmrgS/WYsWUwCn2R7RzlbJWD7F9eWYUTGyBmU9o6PxngtLGOiDGPRu+Uc4fhKzbpteZQ==}
+
+  jquery@4.0.0:
+    resolution: {integrity: sha512-TXCHVR3Lb6TZdtw1l3RTLf8RBWVGexdxL6AC8/e0xZKEpBflBsjh9/8LXw+dkNFuOyW9B7iB3O1sP7hS0Kiacg==}
 
   js-tokens@10.0.0:
     resolution: {integrity: sha512-lM/UBzQmfJRo9ABXbPWemivdCW8V2G8FHaHdypQaIy523snUjog0W71ayWXTjiR+ixeMyVHN2XcpnTd/liPg/Q==}
@@ -2254,6 +2273,8 @@ snapshots:
 
   '@types/har-format@1.2.16': {}
 
+  '@types/jquery@4.0.1': {}
+
   '@types/json-schema@7.0.15': {}
 
   '@types/minimatch@3.0.5': {}
@@ -2867,6 +2888,8 @@ snapshots:
 
   globals@14.0.0: {}
 
+  gmail-js@1.1.16: {}
+
   graceful-fs@4.2.10: {}
 
   graceful-fs@4.2.12: {}
@@ -2972,6 +2995,8 @@ snapshots:
   jiti@2.7.0: {}
 
   jose@5.9.6: {}
+
+  jquery@4.0.0: {}
 
   js-tokens@10.0.0: {}
 

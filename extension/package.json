@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",
+    "@types/jquery": "^4.0.1",
     "@wxt-dev/module-svelte": "^2.0.4",
     "svelte": "^5.53.7",
     "svelte-check": "^4.4.4",
@@ -24,5 +25,9 @@
     "vite": "^8.1.5",
     "web-ext": "^10.5.0",
     "wxt": "^0.21.3"
+  },
+  "dependencies": {
+    "gmail-js": "^1.1.16",
+    "jquery": "^4.0.0"
   }
 }
