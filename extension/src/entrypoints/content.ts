@@ -11,7 +11,7 @@ interface EmailMessage {
 }
 
 import { parse } from 'node-html-parser';
-
+import * as linkify from "linkifyjs"
 
 function extractTextFromHtml(html?: string): string {
   if (!html) return "";
@@ -60,9 +60,12 @@ export default defineContentScript({
           const attachment = email.attachments;
           console.log("Data: ", sender, attachment)
 
-          console.log(email.html)
           const doc = parse(email.html)
-          console.log(doc.textContent, "hi?")
+          const text = doc.textContent
+          const linkedURLs = linkify.find(text).filter(v => v.type === "url").map(v => v.href)
+          const linkedEmails = linkify.find(text).filter(v => v.type === "email").map(v => v.href)
+          const hyperLinks = doc.querySelectorAll("a").map(a => a.getAttribute("href"))
+          console.log(linkedURLs, linkedEmails, hyperLinks)
         }
       } catch (e) {
         console.error(e)
