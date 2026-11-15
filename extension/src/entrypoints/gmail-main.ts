@@ -3,6 +3,7 @@ const GmailFactory = require("gmail-js");
 
 
 export default defineUnlistedScript(() => {
+  console.log("whyy")
   const gmail = new GmailFactory.Gmail($) as Gmail;
   let extensionPort: MessagePort | undefined = undefined;
 
@@ -23,17 +24,16 @@ export default defineUnlistedScript(() => {
   // 3. Send email data exclusively through the private MessagePort
   gmail.observe.on('load', () => {
     gmail.observe.on('view_email', (domEmail) => {
-      const newEmailId = gmail.new.get.email_id(domEmail);
-      const emailData = gmail.new.get.email_data(newEmailId);
-
+      const id = gmail.new.get.email_id(domEmail)
+      const emailData = gmail.new.get.email_data(id);
       if (emailData && extensionPort) {
-        console.log(emailData.from)
         extensionPort.postMessage({
           type: 'EMAIL_VIEWED',
           payload: {
             subject: emailData.subject,
             from: emailData.from,
-            html: emailData.content_html,
+            html: domEmail.body(),
+            attachments: emailData.attachments
           },
         });
       }

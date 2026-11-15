@@ -14,6 +14,15 @@ importers:
       jquery:
         specifier: ^4.0.0
         version: 4.0.0
+      linkify-element:
+        specifier: ^4.4.0
+        version: 4.4.0(linkifyjs@4.4.0)
+      linkifyjs:
+        specifier: ^4.4.0
+        version: 4.4.0
+      node-html-parser:
+        specifier: ^9.0.7
+        version: 9.0.7
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.8
@@ -1274,6 +1283,14 @@ packages:
       canvas:
         optional: true
 
+  linkify-element@4.4.0:
+    resolution: {integrity: sha512-a09Air9FIHF6JBEIdpz/h0aixx0HmVacAvP7LwTyL8LwS7hsmObPyZJ0mm/MfgsMWmIuBrUmkn81/M03+ompig==}
+    peerDependencies:
+      linkifyjs: 4.4.0
+
+  linkifyjs@4.4.0:
+    resolution: {integrity: sha512-InTexvtbai+2c+dEVGcc6O6P2DMVIiwD9a/i4zFroazOIYLOS6FSVmAJ7kFeumnCMx6/gQqNAkbUvgMubV4+MA==}
+
   local-pkg@1.2.1:
     resolution: {integrity: sha512-++gUqRDEvcnN6Zhqrr+y/CkVEHhlrR96vZn3nZZPYzMcBUyBtTKzB9NadClFIsIVSsu+3i9tfk/erqy9kAmt7Q==}
     engines: {node: '>=14'}
@@ -1362,6 +1379,9 @@ packages:
   node-forge@1.4.3:
     resolution: {integrity: sha512-P6wzfh6t70avmV8FrVEAd/36sOPJQ+hkaJVX1Laap9J/77m7M0eyozDvc8SwnDf4P7MP94gwbAAo0rg3YVXT+g==}
     engines: {node: '>= 6.13.0'}
+
+  node-html-parser@9.0.7:
+    resolution: {integrity: sha512-0Io6nKYNN2e+QSoJFxU991Z8kX4H2Ogy3l14Ow0XxR2Wonk9l5qBonx1dYO97UyVfYJ1U9H0WHZOIZW6q5KPrA==}
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
@@ -3140,6 +3160,12 @@ snapshots:
       htmlparser2: 10.1.0
       uhyphen: 0.2.0
 
+  linkify-element@4.4.0(linkifyjs@4.4.0):
+    dependencies:
+      linkifyjs: 4.4.0
+
+  linkifyjs@4.4.0: {}
+
   local-pkg@1.2.1:
     dependencies:
       mlly: 1.8.2
@@ -3219,6 +3245,11 @@ snapshots:
   natural-compare@1.4.0: {}
 
   node-forge@1.4.3: {}
+
+  node-html-parser@9.0.7:
+    dependencies:
+      css-select: 5.2.2
+      entities: 8.1.0
 
   nth-check@2.1.1:
     dependencies:
