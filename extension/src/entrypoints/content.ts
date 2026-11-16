@@ -1,10 +1,15 @@
 // Optional: Define a TypeScript interface matching your payload
+interface GmailSender {
+  name: string;
+  address: string;
+}
+
 interface EmailMessage {
   source: string;
   type: string;
   payload: {
     subject: string;
-    from: string;
+    from: GmailSender;
     html: string;
     attachments: GmailDomAttachment[];
   };
@@ -34,12 +39,12 @@ export default defineContentScript({
   async main() {
     const channel = new MessageChannel();
     const port1 = channel.port1;
+    const processingPort = browser.runtime.connect({name: "EMAIL_PROCESSING"})
     const parser = new DOMParser()
-
 
     let lastEmailKey = "";
     let lastProcessedTime = 0;
-    port1.onmessage = (event) => {
+    port1.onmessage = async (event) => {
       try {
         if (event.data?.type === "EMAIL_VIEWED") {
           const emailData = event.data as EmailMessage;
@@ -57,20 +62,38 @@ export default defineContentScript({
 
 
           const sender = email.from;
-          const attachment = email.attachments;
-          console.log("Data: ", sender, attachment)
+          const attachments = email.attachments;
 
           const doc = parse(email.html)
           const text = doc.textContent
           const linkedURLs = linkify.find(text).filter(v => v.type === "url").map(v => v.href)
           const linkedEmails = linkify.find(text).filter(v => v.type === "email").map(v => v.href)
           const hyperLinks = doc.querySelectorAll("a").map(a => a.getAttribute("href"))
-          console.log(linkedURLs, linkedEmails, hyperLinks)
+
+          console.log(hyperLinks)
+
+          processingPort.postMessage({ type: "PROCESS_EMAIL", payload: {
+              subject: email.subject,
+              sender: sender.address,
+              text: text,
+              urls: linkedURLs,
+              emails: linkedEmails,
+              hyperLinks: hyperLinks
+          }})
+        }
+        if (event.data?.type === "THREAD_VIEWED") {
+          console.log("THREAD_VIEWED")
         }
       } catch (e) {
         console.error(e)
       }
     };
+
+    processingPort.onMessage.addListener((message) => {
+      if (message.type === "EMAIL_PROCESSED") {
+        console.log("Email processed:", message.payload);
+      }
+    });
 
     const initHandler = (event: MessageEvent) => {
       if (event.source !== window || event.data?.type !== "GMAIL_MAIN_READY") {

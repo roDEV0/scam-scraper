@@ -3,7 +3,6 @@ const GmailFactory = require("gmail-js");
 
 
 export default defineUnlistedScript(() => {
-  console.log("whyy")
   const gmail = new GmailFactory.Gmail($) as Gmail;
   let extensionPort: MessagePort | undefined = undefined;
 
@@ -38,5 +37,20 @@ export default defineUnlistedScript(() => {
         });
       }
     });
+    gmail.observe.on('view_thread', (domThread) => {
+      const threadData = gmail.new.get.thread_data(domThread)
+      const originalMessage = gmail.new.get.email_data(threadData?.emails[0])
+      if (originalMessage) {
+        extensionPort?.postMessage({
+          type: 'THREAD_VIEWED',
+          payload: {
+            subject: originalMessage.subject,
+            from: originalMessage.from,
+            html: originalMessage.content_html,
+            attachments: originalMessage.attachments
+          }
+        })
+      }
+    })
   });
 });
